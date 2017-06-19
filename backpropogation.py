@@ -9,9 +9,9 @@ class training_network:
 #pdb.set_trace()
 
 t = []        
-t.append(training_network([0,0,0]))
-t.append(training_network([0,1,1]))
-t.append(training_network([1,1,0]))
+t.append(training_network([0.85,0.4,1]))
+t.append(training_network([0.325214,1,-1]))
+t.append(training_network([0.24152,0.25412,0]))
 t.append(training_network([1,0,1]))
 
 for i in range(len(t)) :
@@ -94,7 +94,7 @@ def Backpropogate (n,rate,ni,nh,no):
     for k in range(len(n)):
         E.append(calculate_error(n[k]))
         print E[k]
-    while (err_count > 0.00001) :
+    while (err_count > 0.1) :
         count += 1
         for i in range(len(n)):
            # Error for Output

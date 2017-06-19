@@ -10,8 +10,8 @@ class training_network:
 
 t = []        
 t.append(training_network([0,0,0]))
-t.append(training_network([0,1,1]))
-t.append(training_network([1,1,0]))
+t.append(training_network([0.6,-1,0.4]))
+t.append(training_network([1,0.251,0.8]))
 t.append(training_network([1,0,1]))
 
 for i in range(len(t)) :
@@ -94,7 +94,7 @@ def Backpropogate (n,rate,ni,nh,no):
     for k in range(len(n)):
         E.append(calculate_error(n[k]))
         print E[k]
-    while (err_count > 0.00001) :
+    while (err_count > 0.001) :
         count += 1
         for i in range(len(n)):
            # Error for Output
@@ -119,7 +119,8 @@ def Backpropogate (n,rate,ni,nh,no):
                 d_h1 = -rate*delta_h[j]*(n[i].inputs[1])
                 n[i].weight_h[2*j] += d_ho
                 n[i].weight_h[(2*j)+1] += d_h1
-
+           if count%100000 ==0:
+               print E[i]
            hidden_values = compute_hidden(n[i].weight_h,n[i].inputs)
            for m in range(nh):
                n[i].hidden[m] = squash(n[i].hidden_values[m])
